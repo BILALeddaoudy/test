@@ -1,41 +1,98 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>تشغيل فيلم Stremio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      text-align: center;
-    }
-    button {
-      font-size: 18px;
-      padding: 12px 24px;
-      cursor: pointer;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Directd – Watch Movies Online</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="bg-[#141414] text-white font-sans min-h-screen">
+  <!-- NAVBAR -->
+  <header class="flex items-center justify-between px-8 py-5 bg-[#141414] z-50 relative">
+    <div class="flex items-center gap-2">
+      <span class="w-10 h-10 flex items-center justify-center bg-[#e50914] text-white text-2xl font-bold rounded-lg">D</span>
+      <span class="text-2xl font-bold text-[#e50914] tracking-wide">Directd</span>
+    </div>
+    <nav class="hidden md:flex gap-8">
+      <button onclick="window.location.href='index.html'" class="nav-link hover:text-white text-gray-300 text-lg font-medium px-4 py-2 rounded-full">Home</button>
+      <button onclick="window.location.href='movies.html'" class="nav-link hover:text-white text-gray-300 text-lg font-medium px-4 py-2 rounded-full">Movies</button>
+      <button onclick="window.location.href='serie.html'" class="nav-link hover:text-white text-gray-300 text-lg font-medium px-4 py-2 rounded-full">Series</button>
+      <button onclick="window.location.href='mylist.html'" class="nav-link hover:text-white text-gray-300 text-lg font-medium px-4 py-2 rounded-full">My List</button>
+    </nav>
+    <div class="flex items-center gap-4">
+      <button class="text-gray-300 hover:text-white"><svg width="22" height="22" fill="currentColor"><use href="#search"/></svg></button>
+      <button class="text-gray-300 hover:text-white"><svg width="22" height="22" fill="currentColor"><use href="#user"/></svg></button>
+    </div>
+  </header>
 
-<h1>تشغيل فيلم عبر Stremio</h1>
+  <!-- MAIN HERO -->
+  <section class="relative h-[480px] md:h-[540px] w-full flex items-end overflow-hidden">
+    <img src="https://th.bing.com/th/id/R.5e2dab6a51d64c09576c5c215ab44aab?rik=e7bEbNITMZcg%2bA&riu=http%3a%2f%2f2.bp.blogspot.com%2f-GT33-hdpjFc%2fVgQb4h0S5GI%2fAAAAAAAABm0%2fw89re_cGDiY%2fs1600%2ffight-club_1999-3-1920x1200_scroller.jpg&ehk=BYNPSWvsaUTRFP7M92iNu8UhTd%2faokiZfBUG1tVswew%3d&risl=&pid=ImgRaw&r=0" alt="Fight Club" class="absolute inset-0 w-full h-full object-cover object-center brightness-[.45]">
+    <div class="relative z-10 px-8 pb-10 max-w-2xl">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-yellow-400 text-xl font-bold">★ 8,8</span>
+        <span class="text-gray-300">Action / Adventure / Sci-Fi</span>
+        <span class="text-gray-400">139 minutes</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Fight Club</h1>
+      <p class="mb-6 text-gray-200">
+        A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy...
+      </p>
+      <div class="flex gap-4">
+        <!-- WATCH Button -->
+        <button onclick="openCard()" class="bg-[#e50914] hover:bg-red-700 text-white px-7 py-3 rounded-md font-bold flex items-center gap-2">
+          <svg width="18" height="18" fill="currentColor"><use href="#play"/></svg> WATCH
+        </button>
 
-<button id="watchBtn">Watch</button>
+        <!-- Info Card -->
+        <div id="infoCard" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+          <div class="bg-[#1f1f1f] rounded-lg p-6 w-[90%] max-w-2xl text-white relative">
+            <button onclick="closeCard()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+            <h2 class="text-2xl font-bold mb-2">Fight Club (1999)</h2>
+            <p class="text-sm text-gray-400 mb-4">Enjoy watching in Full HD quality.</p>
+            <!-- HTML5 Video Player -->
+            <video id="videoPlayer" controls autoplay class="w-full h-[480px] rounded-md shadow">
+              <source src="" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
 
-<script>
-  const stremioLink = "https://web.stremio.com/#/player/eAEBRAG7%2FnsiaW5mb0hhc2giOiJkZWI3ZTVhODk5ZGY1M2ZhNmVlOGRiNDJjNzYwOTk4MmY5MWM4ZTY0IiwiZmlsZUlkeCI6MSwiYW5ub3VuY2UiOltdLCJuYW1lIjoiVG9ycmVudGlvXG5XRUItREwiLCJkZXNjcmlwdGlvbiI6IlN0cmF3ICgyMDI1KSBbV0VCLURMXSBbWHZpRC1LODNdIFtMZWt0b3IgUExdXG7wn5GkIDEg8J%2BSviA3MDEuOTYgTUIg4pqZ77iPIEJlc3RUb3JyZW50c1xu8J%2BHtfCfh7EiLCJiZWhhdmlvckhpbnRzIjp7ImJpbmdlR3JvdXAiOiJ0b3JyZW50aW98V0VCLURMfHh2aWQiLCJmaWxlbmFtZSI6IlN0cmF3LjIwMjUuUEwuV0VCLURMLlh2aUQtSzgzLmF2aSJ9fTMobn8%3D/https%3A%2F%2Ftorrentio.strem.fun%2Fmanifest.json/https%3A%2F%2Fv3-cinemeta.strem.io%2Fmanifest.json/movie/tt32550101/tt32550101";
+        <button class="bg-gray-700 hover:bg-gray-800 text-white px-7 py-3 rounded-md font-bold flex items-center gap-2">
+          <svg width="18" height="18" fill="currentColor"><use href="#plus"/></svg> ADD LIST
+        </button>
+      </div>
+    </div>
+  </section>
 
-  document.getElementById('watchBtn').addEventListener('click', () => {
-    window.open(stremioLink, '_blank', 'width=900,height=600');
-  });
-</script>
+  <!-- SVG ICONS -->
+  <svg style="display:none;">
+    <symbol id="play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+    <symbol id="pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+    <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2c0-2.21 3.58-4 8-4s8 1.79 8 4v2"/></symbol>
+  </svg>
 
+  <!-- Script -->
+  <script>
+    function openCard() {
+      const directLink = "https://eg.bahyfilms.com/data/movies/Fight%20Club%20(1999)/1080/[BAHY.FILMS].Fight.Club.1999.1080p.mp4?bypasscf=true";
+      const video = document.getElementById("videoPlayer");
+      video.querySelector("source").src = directLink;
+      video.load();
+      document.getElementById("infoCard").classList.remove("hidden");
+    }
+
+    function closeCard() {
+      const video = document.getElementById("videoPlayer");
+      video.pause();
+      video.querySelector("source").src = "";
+      video.load();
+      document.getElementById("infoCard").classList.add("hidden");
+    }
+  </script>
 </body>
 </html>
