@@ -1,171 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>Directd – Watch Movies Online</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>تشغيل فيلم Stremio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+    button {
+      font-size: 18px;
+      padding: 12px 24px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
-<body class="bg-[#141414] text-white font-sans min-h-screen">
-  <!-- NAVBAR -->
-  <header class="flex items-center justify-between px-8 py-5 bg-[#141414] z-50 relative">
-    <div class="flex items-center gap-2">
-      <span class="w-10 h-10 flex items-center justify-center bg-[#e50914] text-white text-2xl font-bold rounded-lg">D</span>
-      <span class="text-2xl font-bold text-[#e50914] tracking-wide">Directd</span>
-    </div>
-    <nav class="hidden md:flex gap-8 text-gray-300 text-lg font-medium">
-      <a href="#" class="nav-link hover:text-white">Home</a>
-      <a href="#" class="nav-link hover:text-white">Movies</a>
-      <a href="#" class="nav-link hover:text-white">Series</a>
-      <a href="#" class="nav-link hover:text-white">My List</a>
-    </nav>
-    <div class="flex items-center gap-4">
-      <button class="text-gray-300 hover:text-white"><svg width="22" height="22" fill="currentColor"><use href="#search"/></svg></button>
-      <button class="text-gray-300 hover:text-white"><svg width="22" height="22" fill="currentColor"><use href="#user"/></svg></button>
-    </div>
-  </header>
-  
-  <!-- MAIN HERO -->
-  <section class="relative h-[480px] md:h-[540px] w-full flex items-end overflow-hidden">
-    <img src="your-hero-image.jpg" alt="Featured Movie" class="absolute inset-0 w-full h-full object-cover object-center brightness-[.45]">
-    <div class="relative z-10 px-8 pb-10 max-w-2xl">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-yellow-400 text-xl font-bold">★ 6.5</span>
-        <span class="text-gray-300">Action / Adventure / Sci-Fi</span>
-        <span class="text-gray-400">1h 47m</span>
-      </div>
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Rampage</h1>
-      <p class="mb-6 text-gray-200">When three different animals become infected with a dangerous pathogen, a primatologist and a geneticist team up to stop them from destroying Chicago.</p>
-      <div class="flex gap-4">
-        <button class="bg-[#e50914] hover:bg-red-700 text-white px-7 py-3 rounded-md font-bold flex items-center gap-2">
-          <svg width="18" height="18" fill="currentColor"><use href="#play"/></svg> WATCH
-        </button>
-        <button class="bg-gray-700 hover:bg-gray-800 text-white px-7 py-3 rounded-md font-bold flex items-center gap-2">
-          <svg width="18" height="18" fill="currentColor"><use href="#plus"/></svg> ADD LIST
-        </button>
-      </div>
-    </div>
-  </section>
-  
-  <!-- TRENDS NOW -->
-  <section class="mt-10 px-8">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-2xl font-bold">Trends Now</h2>
-      <div class="flex gap-4 text-gray-400 text-sm">
-        <button class="active-dot">●</button>
-        <button>Popular</button>
-        <button>Premieres</button>
-        <button>Recently Added</button>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-2 mb-5">
-      <button class="tag-active">Action</button>
-      <button class="tag">Adventure</button>
-      <button class="tag">Animation</button>
-      <button class="tag">Biography</button>
-      <button class="tag">Crime</button>
-      <button class="tag">Comedy</button>
-      <button class="tag">Documentary</button>
-      <button class="tag">Drama</button>
-    </div>
-    <div class="overflow-x-auto flex gap-6 pb-2">
-      <!-- Repeat this card for each trending movie -->
-      <div class="min-w-[180px]">
-        <img src="poster1.jpg" alt="Pacific Rim 2" class="rounded-lg w-full h-60 object-cover shadow-lg cursor-pointer movie-poster" data-title="Pacific Rim 2" data-link="YOUR_STREAMLINK">
-        <div class="text-sm mt-2 text-gray-200">
-          Pacific Rim 2: Uprising <span class="text-yellow-400">★ 5.8</span>
-        </div>
-      </div>
-      <!-- ... repeat for more posters ... -->
-    </div>
-  </section>
-  
-  <!-- MOVIES GRID -->
-  <section class="mt-10 px-8">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-2xl font-bold">Movies</h2>
-      <div class="flex items-center gap-6">
-        <div class="flex gap-2">
-          <button class="tag-active">Action</button>
-          <button class="tag">Adventure</button>
-          <button class="tag">Animation</button>
-          <button class="tag">Biography</button>
-          <button class="tag">Crime</button>
-          <button class="tag">Comedy</button>
-          <button class="tag">Documentary</button>
-          <button class="tag">Drama</button>
-        </div>
-        <select class="bg-[#232323] text-gray-200 rounded px-2 py-1 ml-4 text-sm">
-          <option>Latest</option>
-          <option>Year</option>
-          <option>A-Z</option>
-        </select>
-        <input type="range" min="5" max="10" value="5" class="ml-4" />
-      </div>
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-      <!-- Repeat this card for each movie -->
-      <div>
-        <img src="poster2.jpg" alt="Deadpool 2" class="rounded-lg w-full h-60 object-cover shadow-lg cursor-pointer movie-poster" data-title="Deadpool 2" data-link="YOUR_STREAMLINK">
-        <div class="text-sm mt-2 text-gray-200">
-          Deadpool 2 <span class="text-yellow-400">★ 8.1</span>
-        </div>
-      </div>
-      <!-- ... repeat for more posters ... -->
-    </div>
-  </section>
-  
-  <!-- MOVIE PLAYER BAR -->
-  <section class="mt-12 px-8">
-    <div class="bg-[#232323] rounded-lg shadow-lg overflow-hidden relative">
-      <img src="your-player-bg.jpg" alt="Movie playing" class="absolute inset-0 w-full h-full object-cover opacity-40 z-0"/>
-      <div class="relative z-10 flex flex-col justify-end h-[340px] p-8">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="bg-[#e50914] px-3 py-1 rounded text-sm font-bold">Watching</span>
-          <span class="text-lg font-bold">Jurassic World: Fallen Kingdom (2018)</span>
-        </div>
-        <div class="flex items-center gap-2 text-gray-200 text-sm mb-3">
-          <span>28:04</span>
-          <input type="range" min="0" max="100" value="45" class="h-1 w-2/3 bg-[#e50914] rounded"/>
-          <span>01:40:00</span>
-        </div>
-        <div class="flex gap-3">
-          <button class="player-btn"><svg width="18" height="18" fill="currentColor"><use href="#play"/></svg></button>
-          <button class="player-btn"><svg width="18" height="18" fill="currentColor"><use href="#pause"/></svg></button>
-          <button class="player-btn"><svg width="18" height="18" fill="currentColor"><use href="#volume"/></svg></button>
-          <button class="player-btn"><svg width="18" height="18" fill="currentColor"><use href="#fullscreen"/></svg></button>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- FOOTER MOVIES BAR -->
-  <section class="mt-8 mb-10 px-8">
-    <div class="flex gap-6 overflow-x-auto pb-2">
-      <!-- Repeat this card for each footer movie -->
-      <div class="min-w-[120px]">
-        <img src="poster3.jpg" alt="Mute" class="rounded-lg w-full h-40 object-cover shadow-lg cursor-pointer movie-poster" data-title="Mute" data-link="YOUR_STREAMLINK">
-        <div class="text-xs mt-2 text-gray-200">
-          Mute <span class="text-yellow-400">★ 5.4</span>
-        </div>
-      </div>
-      <!-- ... repeat for more posters ... -->
-    </div>
-  </section>
-  
-  <!-- SVG ICONS -->
-  <svg style="display:none;">
-    <symbol id="play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
-    <symbol id="pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></symbol>
-    <symbol id="plus" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></symbol>
-    <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
-    <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2c0-2.21 3.58-4 8-4s8 1.79 8 4v2"/></symbol>
-    <symbol id="volume" viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3z"/></symbol>
-    <symbol id="fullscreen" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zM19 14v3h-3v2h5v-5h-2zM5 10h2V7h3V5H5v5zm14-5h-5v2h3v3h2V5z"/></symbol>
-  </svg>
-  
-  <script src="script.js"></script>
+<body>
+
+<h1>تشغيل فيلم عبر Stremio</h1>
+
+<button id="watchBtn">Watch</button>
+
+<script>
+  const stremioLink = "https://web.stremio.com/#/player/eAEBRAG7%2FnsiaW5mb0hhc2giOiJkZWI3ZTVhODk5ZGY1M2ZhNmVlOGRiNDJjNzYwOTk4MmY5MWM4ZTY0IiwiZmlsZUlkeCI6MSwiYW5ub3VuY2UiOltdLCJuYW1lIjoiVG9ycmVudGlvXG5XRUItREwiLCJkZXNjcmlwdGlvbiI6IlN0cmF3ICgyMDI1KSBbV0VCLURMXSBbWHZpRC1LODNdIFtMZWt0b3IgUExdXG7wn5GkIDEg8J%2BSviA3MDEuOTYgTUIg4pqZ77iPIEJlc3RUb3JyZW50c1xu8J%2BHtfCfh7EiLCJiZWhhdmlvckhpbnRzIjp7ImJpbmdlR3JvdXAiOiJ0b3JyZW50aW98V0VCLURMfHh2aWQiLCJmaWxlbmFtZSI6IlN0cmF3LjIwMjUuUEwuV0VCLURMLlh2aUQtSzgzLmF2aSJ9fTMobn8%3D/https%3A%2F%2Ftorrentio.strem.fun%2Fmanifest.json/https%3A%2F%2Fv3-cinemeta.strem.io%2Fmanifest.json/movie/tt32550101/tt32550101";
+
+  document.getElementById('watchBtn').addEventListener('click', () => {
+    window.open(stremioLink, '_blank', 'width=900,height=600');
+  });
+</script>
+
 </body>
 </html>
